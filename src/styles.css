@@ -68,8 +68,9 @@ body::before {
   left: 0;
   right: 0;
   z-index: 70;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
   gap: 1rem;
   padding: 1.35rem 1.8rem;
   pointer-events: none;
@@ -77,17 +78,52 @@ body::before {
 }
 
 .site-bar-brand,
-.site-bar-meta {
+.site-bar-meta,
+.site-nav {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+}
+
+.site-bar-brand,
+.site-bar-meta,
+.site-nav a {
   color: var(--muted);
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
+.site-nav {
+  justify-content: center;
+  flex-wrap: wrap;
+  pointer-events: auto;
+}
+
+.site-nav a {
+  text-decoration: none;
+  position: relative;
+}
+
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.2rem;
+  height: 1px;
+  background: rgba(18, 16, 14, 0.24);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 180ms ease;
+}
+
+.site-nav a:hover::after {
+  transform: scaleX(1);
+}
+
 .site-bar-meta {
+  justify-content: flex-end;
   flex-wrap: wrap;
 }
 
@@ -122,7 +158,8 @@ body::before {
 .flow-section,
 .resume-shell,
 .more-section,
-.gallery-section {
+.gallery-section,
+.contact-section {
   width: min(100%, 1540px);
   margin: 0 auto;
   padding-left: 5vw;
@@ -134,7 +171,7 @@ body::before {
   grid-template-columns: minmax(300px, 0.68fr) minmax(0, 1fr);
   gap: 2.8rem;
   align-items: center;
-  padding-top: 7.6rem;
+  padding-top: 7.8rem;
 }
 
 .hero-copy {
@@ -147,7 +184,9 @@ body::before {
 .hero-float-copy span,
 .flow-item-label,
 .flow-item-meta,
-.gallery-card figcaption {
+.flow-preview-label,
+.gallery-card figcaption,
+.contact-card span {
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -159,7 +198,9 @@ body::before {
 .hero-float-copy span,
 .flow-item-label,
 .flow-item-meta,
-.gallery-card figcaption {
+.flow-preview-label,
+.gallery-card figcaption,
+.contact-card span {
   color: var(--soft);
 }
 
@@ -169,7 +210,8 @@ body::before {
 .skill-card h3,
 .flow-preview-copy h3,
 .resume-card h3,
-.more-card h3 {
+.more-card h3,
+.contact-card strong {
   margin: 0;
   font-family: "Iowan Old Style", "Palatino Linotype", serif;
   font-weight: 600;
@@ -288,6 +330,7 @@ body::before {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  align-items: center;
 }
 
 .hero-footer p,
@@ -297,7 +340,14 @@ body::before {
   font-size: 0.94rem;
 }
 
-.hero-footer a {
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-actions a,
+.hero-footer > a {
   border-bottom: 1px solid rgba(18, 16, 14, 0.24);
 }
 
@@ -317,7 +367,8 @@ body::before {
 .flow-section,
 .resume-section,
 .more-section,
-.gallery-section {
+.gallery-section,
+.contact-section {
   padding-top: 5rem;
 }
 
@@ -331,7 +382,8 @@ body::before {
 .skill-card,
 .resume-card,
 .more-card,
-.flow-shell {
+.flow-shell,
+.contact-card {
   position: relative;
   border-radius: 2rem;
   background:
@@ -354,7 +406,8 @@ body::before {
 .skill-card:hover,
 .resume-card:hover,
 .more-card:hover,
-.flow-item:hover {
+.flow-item:hover,
+.contact-card:hover {
   transform: translateY(-8px);
   box-shadow:
     0 38px 92px rgba(72, 51, 24, 0.16),
@@ -390,7 +443,8 @@ body::before {
 
 .skill-grid,
 .resume-grid,
-.more-grid {
+.more-grid,
+.contact-grid {
   display: grid;
   gap: 1rem;
 }
@@ -600,6 +654,25 @@ body::before {
   border-radius: 1.7rem;
 }
 
+.contact-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contact-card {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.4rem;
+  text-decoration: none;
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms ease;
+}
+
+.contact-card strong {
+  font-size: clamp(1.8rem, 2.4vw, 2.8rem);
+  color: var(--ink);
+}
+
 .photo-card {
   position: relative;
   isolation: isolate;
@@ -722,20 +795,29 @@ body::before {
   .flow-item,
   .resume-card,
   .more-card,
+  .contact-card,
   .photo-media {
     transition: none;
   }
 }
 
 @media (max-width: 1180px) {
+  .site-bar,
   .hero-stage,
   .skill-grid,
   .resume-grid,
   .more-grid,
   .flow-shell,
   .flow-preview,
-  .more-card {
+  .more-card,
+  .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .site-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .hero-visual {
@@ -772,22 +854,23 @@ body::before {
 
 @media (max-width: 899px) {
   .site-bar {
-    flex-direction: column;
-    align-items: flex-start;
     padding: 1.15rem 1.2rem 0;
   }
 
   .site-bar-brand,
   .site-bar-meta,
+  .site-nav a,
   .hero-kicker,
   .section-kicker,
   .bento-card span,
   .hero-float-copy span,
   .flow-item-label,
   .flow-item-meta,
+  .flow-preview-label,
   .gallery-card figcaption,
   .hero-meta span,
-  .skill-list span {
+  .skill-list span,
+  .contact-card span {
     font-size: 0.65rem;
   }
 
@@ -797,13 +880,14 @@ body::before {
   .flow-section,
   .resume-shell,
   .more-section,
-  .gallery-section {
+  .gallery-section,
+  .contact-section {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
   }
 
   .hero-stage {
-    padding-top: 6rem;
+    padding-top: 7rem;
   }
 
   .hero-title {
