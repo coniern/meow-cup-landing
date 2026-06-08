@@ -6,7 +6,7 @@ import glazeImage from "../images/ChatGPT Image 2026年6月7日 16_22_20.png";
 import markImage from "../images/ChatGPT Image 2026年6月7日 16_27_49.png";
 
 export const siteMeta = {
-  name: "肖童学",
+  name: "Tongxue Xiao",
   role: "Full-Stack Developer / AI Application Engineer",
   email: "2325826552@qq.com",
   github: "https://github.com/coniern",
@@ -31,8 +31,15 @@ export const heroContent = {
   sideImage: detailImage,
   sideLabel: "Current Direction",
   sideBody:
-    "Personal portfolio systems, management platforms, frontend interaction work, and AI-oriented product positioning.",
+    "Portfolio websites, management systems, frontend interaction work, and AI-oriented product positioning.",
 };
+
+export const navigationLinks = [
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "resume", label: "Resume" },
+  { id: "contact", label: "Contact" },
+];
 
 export const bentoCards = [
   {
@@ -112,73 +119,6 @@ export const skillGroups = [
   },
 ];
 
-export const featuredProjects = [
-  {
-    id: "meow-cup",
-    title: "Meow Cup Portfolio Landing",
-    type: "React / GSAP / Vite",
-    summary:
-      "A visual product page rebuilt into a portfolio-ready campaign-style website with stronger hierarchy, responsive structure, and reusable code organization.",
-    highlights: [
-      "Restructured the page into cleaner narrative sections",
-      "Improved image composition, interaction rhythm, and mobile behavior",
-      "Split logic into reusable content, hooks, and components",
-    ],
-    image: heroImage,
-    position: "50% 50%",
-    repo: "https://github.com/coniern/meow-cup-landing",
-  },
-  {
-    id: "thesis-system",
-    title: "Thesis Management System",
-    type: "Vue 3 / Spring Boot / MySQL",
-    summary:
-      "A full-stack graduation thesis workflow platform with role-based interfaces for administrators, teachers, and students.",
-    highlights: [
-      "Covers topic selection, process tracking, file workflows, and system settings",
-      "Strong enough to represent real business-oriented full-stack work",
-      "Repository documentation and presentation were upgraded for portfolio use",
-    ],
-    image: projectGridImage,
-    position: "50% 50%",
-    repo: "https://github.com/coniern/Thesis-management-system",
-  },
-  {
-    id: "javaweb-platform",
-    title: "Project Management Platform",
-    type: "Java / Spring Boot / JSP",
-    summary:
-      "A Java-based management platform prototype showing backend controller organization, platform modules, and technical-debt cleanup awareness.",
-    highlights: [
-      "Combines backend endpoints with authentication and project flow pages",
-      "Shows understanding of older and transitional Java web project structures",
-      "Repository hygiene and README quality were improved significantly",
-    ],
-    image: frontImage,
-    position: "50% 50%",
-    repo: "https://github.com/coniern/project-JavaWeb-system",
-  },
-];
-
-export const additionalProjects = [
-  {
-    id: "graduation-modular",
-    title: "Graduation Thesis Management System",
-    description:
-      "A larger modular thesis platform with separated system, notification, document, gateway, and thesis-related modules.",
-    repo: "https://github.com/coniern/Graduation-Thesis-Management-System",
-    image: projectGridImage,
-  },
-  {
-    id: "ml-practice",
-    title: "Linear / Logistic Regression Practice",
-    description:
-      "NumPy-based machine learning exercises rewritten into clearer and more presentable learning projects.",
-    repo: "https://github.com/coniern/linear-regression-practice",
-    image: glazeImage,
-  },
-];
-
 export const flowingProjects = [
   {
     id: "flow-meow-cup",
@@ -253,6 +193,46 @@ export const resumeSections = [
       "Better project presentation than typical school repositories",
       "A useful mix of engineering, interface sense, and AI-facing curiosity",
     ],
+  },
+];
+
+export const contactLinks = [
+  {
+    id: "email",
+    label: "Email",
+    value: "2325826552@qq.com",
+    href: "mailto:2325826552@qq.com",
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    value: "github.com/coniern",
+    href: "https://github.com/coniern",
+  },
+  {
+    id: "resume",
+    label: "Resume",
+    value: "Chinese resume draft",
+    href: "/RESUME_FULLSTACK_AI_CN.md",
+  },
+];
+
+export const additionalProjects = [
+  {
+    id: "graduation-modular",
+    title: "Graduation Thesis Management System",
+    description:
+      "A larger modular thesis platform with separated system, notification, document, gateway, and thesis-related modules.",
+    repo: "https://github.com/coniern/Graduation-Thesis-Management-System",
+    image: projectGridImage,
+  },
+  {
+    id: "ml-practice",
+    title: "Linear / Logistic Regression Practice",
+    description:
+      "NumPy-based machine learning exercises rewritten into clearer and more presentable learning projects.",
+    repo: "https://github.com/coniern/linear-regression-practice",
+    image: glazeImage,
   },
 ];
 
