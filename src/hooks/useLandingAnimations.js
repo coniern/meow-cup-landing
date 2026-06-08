@@ -13,12 +13,13 @@ export default function useLandingAnimations(rootRef) {
 
     const context = gsap.context(() => {
       const revealItems = gsap.utils.toArray(".reveal-item");
-      const storySteps = gsap.utils.toArray(".story-step");
-      const storyImages = gsap.utils.toArray(".story-image");
+      const bentoCards = gsap.utils.toArray(".bento-card");
+      const flowItems = gsap.utils.toArray(".flow-item");
 
-      gsap.set(".hero-copy", { autoAlpha: 0, y: 34 });
-      gsap.set(".hero-frame", { autoAlpha: 0, y: 38, scale: 0.975 });
-      gsap.set(".hero-float-card", { autoAlpha: 0, y: 26 });
+      gsap.set(".hero-copy", { autoAlpha: 0, y: 36 });
+      gsap.set(".hero-frame", { autoAlpha: 0, y: 44, scale: 0.97 });
+      gsap.set(".hero-float-card", { autoAlpha: 0, y: 28, rotate: 2 });
+      gsap.set(".flow-preview", { autoAlpha: 0, y: 24, scale: 0.98 });
 
       gsap
         .timeline()
@@ -26,7 +27,7 @@ export default function useLandingAnimations(rootRef) {
           autoAlpha: 1,
           y: 0,
           scale: 1,
-          duration: 1.05,
+          duration: 1.08,
           ease: "power3.out",
         })
         .to(
@@ -34,7 +35,7 @@ export default function useLandingAnimations(rootRef) {
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.82,
+            duration: 0.86,
             ease: "power2.out",
           },
           0.16
@@ -44,16 +45,28 @@ export default function useLandingAnimations(rootRef) {
           {
             autoAlpha: 1,
             y: 0,
+            rotate: 0,
             duration: 0.92,
             ease: "power3.out",
           },
-          0.22
+          0.26
+        )
+        .to(
+          ".flow-preview",
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.88,
+            ease: "power2.out",
+          },
+          0.34
         );
 
       revealItems.forEach((item) => {
         gsap.fromTo(
           item,
-          { autoAlpha: 0, y: 36 },
+          { autoAlpha: 0, y: 32 },
           {
             autoAlpha: 1,
             y: 0,
@@ -62,6 +75,43 @@ export default function useLandingAnimations(rootRef) {
             scrollTrigger: {
               trigger: item,
               start: "top 86%",
+            },
+          }
+        );
+      });
+
+      bentoCards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          { autoAlpha: 0, y: 50, rotateX: 8 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.95,
+            ease: "power3.out",
+            delay: index * 0.04,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+            },
+          }
+        );
+      });
+
+      flowItems.forEach((item, index) => {
+        gsap.fromTo(
+          item,
+          { autoAlpha: 0, y: 34, x: index % 2 === 0 ? -18 : 18 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            x: 0,
+            duration: 0.82,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%",
             },
           }
         );
@@ -82,7 +132,7 @@ export default function useLandingAnimations(rootRef) {
         .to(
           ".hero-stage",
           {
-            scale: 0.965,
+            scale: 0.968,
             yPercent: -2,
             ease: "none",
           },
@@ -91,7 +141,7 @@ export default function useLandingAnimations(rootRef) {
         .to(
           ".hero-copy",
           {
-            yPercent: -10,
+            yPercent: -12,
             ease: "none",
           },
           0
@@ -100,86 +150,15 @@ export default function useLandingAnimations(rootRef) {
           ".hero-float-card",
           {
             yPercent: 10,
-            autoAlpha: 0.62,
+            autoAlpha: 0.65,
             ease: "none",
           },
           0
         );
 
-      const matchMedia = gsap.matchMedia();
-
-      matchMedia.add("(min-width: 900px)", () => {
-        gsap.set(storySteps.slice(1), { autoAlpha: 0, y: 22 });
-        gsap.set(storyImages.slice(1), { autoAlpha: 0, scale: 1.03 });
-
-        const storyTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".story-lock",
-            start: "top top",
-            end: "+=240%",
-            scrub: 1,
-            pin: ".story-stick",
-            anticipatePin: 1,
-          },
-        });
-
-        storySteps.forEach((step, index) => {
-          if (index === 0) {
-            return;
-          }
-
-          const position = index;
-          storyTimeline
-            .to(
-              storySteps[index - 1],
-              {
-                autoAlpha: 0,
-                y: -18,
-                duration: 0.28,
-              },
-              position - 0.3
-            )
-            .to(
-              storyImages[index - 1],
-              {
-                autoAlpha: 0,
-                scale: 0.985,
-                duration: 0.28,
-              },
-              position - 0.3
-            )
-            .fromTo(
-              step,
-              { autoAlpha: 0, y: 22 },
-              {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.34,
-              },
-              position
-            )
-            .fromTo(
-              storyImages[index],
-              { autoAlpha: 0, scale: 1.03 },
-              {
-                autoAlpha: 1,
-                scale: 1,
-                duration: 0.38,
-              },
-              position
-            );
-        });
-
-        return () => {
-          storyTimeline.scrollTrigger?.kill();
-          storyTimeline.kill();
-        };
-      });
-
       return () => {
         heroTimeline.scrollTrigger?.kill();
         heroTimeline.kill();
-        matchMedia.revert();
       };
     }, root);
 
