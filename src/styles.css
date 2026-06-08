@@ -1,11 +1,11 @@
 :root {
-  --bg: #f5efe7;
-  --panel: rgba(255, 251, 246, 0.84);
-  --panel-strong: rgba(255, 248, 241, 0.94);
-  --ink: #12100e;
-  --muted: rgba(18, 16, 14, 0.68);
-  --soft: rgba(18, 16, 14, 0.4);
-  --line: rgba(18, 16, 14, 0.1);
+  --bg: #f6efe5;
+  --panel: rgba(255, 250, 243, 0.84);
+  --panel-strong: rgba(255, 248, 240, 0.94);
+  --ink: #17110d;
+  --muted: rgba(23, 17, 13, 0.66);
+  --soft: rgba(23, 17, 13, 0.38);
+  --line: rgba(23, 17, 13, 0.1);
   --accent: #cf9842;
 }
 
@@ -28,8 +28,8 @@ body {
   color: var(--ink);
   background:
     radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.94), transparent 24%),
-    radial-gradient(circle at 88% 14%, rgba(236, 204, 151, 0.22), transparent 24%),
-    radial-gradient(circle at 52% 78%, rgba(220, 189, 147, 0.16), transparent 30%),
+    radial-gradient(circle at 88% 14%, rgba(236, 204, 151, 0.2), transparent 24%),
+    radial-gradient(circle at 52% 78%, rgba(220, 189, 147, 0.14), transparent 30%),
     linear-gradient(180deg, #fffaf4 0%, #f4eadb 46%, #ebdbc8 100%);
   font-family: "Avenir Next", "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -45,15 +45,15 @@ body::before {
   background:
     radial-gradient(
       circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
-      rgba(255, 246, 232, 0.26),
-      rgba(255, 252, 246, 0.08) 14%,
+      rgba(255, 246, 232, 0.22),
+      rgba(255, 252, 246, 0.06) 14%,
       transparent 34%
     ),
     linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 18%);
   mix-blend-mode: screen;
 }
 
-.portfolio-site {
+.cup-site {
   --pointer-x: 50%;
   --pointer-y: 50%;
   --pointer-drift-x: 0;
@@ -62,75 +62,35 @@ body::before {
   padding-bottom: 5rem;
 }
 
-.site-bar {
+.topbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 70;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
+  z-index: 60;
+  display: flex;
+  justify-content: space-between;
   gap: 1rem;
   padding: 1.35rem 1.8rem;
   pointer-events: none;
   mix-blend-mode: multiply;
 }
 
-.site-bar-brand,
-.site-bar-meta,
-.site-nav {
+.topbar-brand,
+.topbar-meta {
   display: flex;
   align-items: center;
   gap: 0.85rem;
-}
-
-.site-bar-brand,
-.site-bar-meta,
-.site-nav a {
   color: var(--muted);
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-.site-nav {
-  justify-content: center;
-  flex-wrap: wrap;
-  pointer-events: auto;
-}
-
-.site-nav a {
-  text-decoration: none;
-  position: relative;
-}
-
-.site-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.2rem;
-  height: 1px;
-  background: rgba(18, 16, 14, 0.24);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 180ms ease;
-}
-
-.site-nav a:hover::after {
-  transform: scaleX(1);
-}
-
-.site-bar-meta {
-  justify-content: flex-end;
-  flex-wrap: wrap;
-}
-
-.site-bar-meta span + span::before {
+.topbar-meta span + span::before {
   content: "/";
   margin-right: 0.85rem;
-  color: rgba(18, 16, 14, 0.24);
+  color: rgba(23, 17, 13, 0.24);
 }
 
 .brand-dot {
@@ -146,7 +106,7 @@ body::before {
 }
 
 .hero-pin {
-  min-height: 118vh;
+  min-height: 110vh;
   display: grid;
   align-items: center;
   overflow: clip;
@@ -154,13 +114,10 @@ body::before {
 
 .hero-stage,
 .bento-section,
-.skill-section,
 .flow-section,
-.resume-shell,
-.more-section,
-.gallery-section,
-.contact-section {
-  width: min(100%, 1540px);
+.detail-section,
+.gallery-section {
+  width: min(100%, 1500px);
   margin: 0 auto;
   padding-left: 5vw;
   padding-right: 5vw;
@@ -171,22 +128,21 @@ body::before {
   grid-template-columns: minmax(300px, 0.68fr) minmax(0, 1fr);
   gap: 2.8rem;
   align-items: center;
-  padding-top: 7.8rem;
+  padding-top: 7.6rem;
 }
 
 .hero-copy {
-  max-width: 37rem;
+  max-width: 35rem;
 }
 
 .hero-kicker,
 .section-kicker,
 .bento-card span,
-.hero-float-copy span,
+.hero-side-copy span,
 .flow-item-label,
 .flow-item-meta,
 .flow-preview-label,
-.gallery-card figcaption,
-.contact-card span {
+.gallery-card figcaption {
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -195,23 +151,19 @@ body::before {
 .hero-kicker,
 .section-kicker,
 .bento-card span,
-.hero-float-copy span,
+.hero-side-copy span,
 .flow-item-label,
 .flow-item-meta,
 .flow-preview-label,
-.gallery-card figcaption,
-.contact-card span {
+.gallery-card figcaption {
   color: var(--soft);
 }
 
 .hero-title,
 .section-title,
 .bento-card h3,
-.skill-card h3,
 .flow-preview-copy h3,
-.resume-card h3,
-.more-card h3,
-.contact-card strong {
+.detail-copy h3 {
   margin: 0;
   font-family: "Iowan Old Style", "Palatino Linotype", serif;
   font-weight: 600;
@@ -220,15 +172,13 @@ body::before {
 }
 
 .hero-title {
-  font-size: clamp(4.6rem, 8vw, 9rem);
+  font-size: clamp(4.8rem, 8vw, 9rem);
 }
 
 .hero-subtitle,
 .bento-card p,
-.resume-intro,
-.resume-card p,
-.more-card p,
-.flow-preview-copy p {
+.flow-preview-copy p,
+.detail-copy p {
   color: var(--muted);
   line-height: 1.8;
   font-size: 1rem;
@@ -236,7 +186,7 @@ body::before {
 
 .hero-subtitle {
   margin: 1.2rem 0 0;
-  max-width: 29rem;
+  max-width: 28rem;
 }
 
 .hero-meta {
@@ -246,8 +196,7 @@ body::before {
   margin-top: 1.8rem;
 }
 
-.hero-meta span,
-.skill-list span {
+.hero-meta span {
   padding: 0.78rem 1rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.56);
@@ -261,7 +210,7 @@ body::before {
 
 .hero-visual {
   position: relative;
-  min-height: 90vh;
+  min-height: 88vh;
 }
 
 .hero-stamp {
@@ -293,18 +242,18 @@ body::before {
   border-radius: 2.5rem;
 }
 
-.hero-float-card {
+.hero-side-card {
   width: 100%;
   position: relative;
   z-index: 5;
 }
 
-.hero-float-inner {
+.hero-side-media {
   height: clamp(300px, 42vh, 430px);
   border-radius: 1.8rem;
 }
 
-.hero-float-copy {
+.hero-side-copy {
   margin-top: 0.85rem;
   padding: 1rem 1.1rem;
   border-radius: 1.35rem;
@@ -315,7 +264,7 @@ body::before {
   backdrop-filter: blur(16px);
 }
 
-.hero-float-copy strong {
+.hero-side-copy strong {
   display: block;
   margin-top: 0.5rem;
   font-size: 1rem;
@@ -324,31 +273,14 @@ body::before {
 }
 
 .hero-footer {
-  width: min(100%, 1540px);
+  width: min(100%, 1500px);
   margin: 0 auto;
   padding: 1.4rem 5vw 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
 }
 
-.hero-footer p,
-.hero-footer a {
+.hero-footer p {
   color: var(--muted);
-  text-decoration: none;
   font-size: 0.94rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.hero-actions a,
-.hero-footer > a {
-  border-bottom: 1px solid rgba(18, 16, 14, 0.24);
 }
 
 .section-head {
@@ -358,17 +290,14 @@ body::before {
 }
 
 .section-title {
-  max-width: 50rem;
-  font-size: clamp(3rem, 5vw, 5.8rem);
+  max-width: 48rem;
+  font-size: clamp(3rem, 5vw, 5.6rem);
 }
 
 .bento-section,
-.skill-section,
 .flow-section,
-.resume-section,
-.more-section,
-.gallery-section,
-.contact-section {
+.detail-section,
+.gallery-section {
   padding-top: 5rem;
 }
 
@@ -379,11 +308,8 @@ body::before {
 }
 
 .bento-card,
-.skill-card,
-.resume-card,
-.more-card,
 .flow-shell,
-.contact-card {
+.detail-card {
   position: relative;
   border-radius: 2rem;
   background:
@@ -403,11 +329,8 @@ body::before {
 }
 
 .bento-card:hover,
-.skill-card:hover,
-.resume-card:hover,
-.more-card:hover,
 .flow-item:hover,
-.contact-card:hover {
+.detail-card:hover {
   transform: translateY(-8px);
   box-shadow:
     0 38px 92px rgba(72, 51, 24, 0.16),
@@ -428,44 +351,12 @@ body::before {
 }
 
 .bento-card h3,
-.skill-card h3,
-.resume-card h3,
-.more-card h3 {
+.detail-copy h3 {
   margin-top: 0.75rem;
   font-size: clamp(1.8rem, 2.2vw, 2.8rem);
 }
 
-.bento-card p,
-.resume-card p,
-.more-card p {
-  margin-top: 1rem;
-}
-
-.skill-grid,
-.resume-grid,
-.more-grid,
-.contact-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.skill-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.skill-card,
-.resume-card,
-.more-card {
-  padding: 1.4rem;
-  transition:
-    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 260ms ease;
-}
-
-.skill-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
+.bento-card p {
   margin-top: 1rem;
 }
 
@@ -543,7 +434,7 @@ body::before {
   position: absolute;
   left: 0;
   top: 100%;
-  color: rgba(18, 16, 14, 0.56);
+  color: rgba(23, 17, 13, 0.56);
 }
 
 .flow-item:hover .flow-item-title,
@@ -572,54 +463,24 @@ body::before {
   font-size: clamp(2.2rem, 3vw, 3.8rem);
 }
 
-.flow-preview-copy a,
-.more-card a {
-  display: inline-block;
-  margin-top: 1.2rem;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(18, 16, 14, 0.24);
-  font-size: 0.92rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.resume-shell {
+.detail-grid {
   display: grid;
-  gap: 2rem;
-}
-
-.resume-intro {
-  max-width: 42rem;
-  margin: 1rem 0 0;
-}
-
-.resume-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.resume-card h3 {
-  margin: 0 0 1rem;
-  color: var(--soft);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.more-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.more-card {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.44fr) minmax(0, 1fr);
   gap: 1rem;
-  align-items: center;
 }
 
-.more-card-visual {
-  min-height: 15rem;
-  border-radius: 1.5rem;
+.detail-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.3rem;
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms ease;
+}
+
+.detail-visual {
+  min-height: 28rem;
+  border-radius: 1.7rem;
 }
 
 .gallery-grid {
@@ -645,32 +506,9 @@ body::before {
   grid-column: span 3;
 }
 
-.kind-small {
-  grid-column: span 3;
-}
-
 .gallery-visual {
   min-height: 22rem;
   border-radius: 1.7rem;
-}
-
-.contact-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.contact-card {
-  display: grid;
-  gap: 0.8rem;
-  padding: 1.4rem;
-  text-decoration: none;
-  transition:
-    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 260ms ease;
-}
-
-.contact-card strong {
-  font-size: clamp(1.8rem, 2.4vw, 2.8rem);
-  color: var(--ink);
 }
 
 .photo-card {
@@ -791,33 +629,19 @@ body::before {
 
   .photo-card,
   .bento-card,
-  .skill-card,
   .flow-item,
-  .resume-card,
-  .more-card,
-  .contact-card,
+  .detail-card,
   .photo-media {
     transition: none;
   }
 }
 
 @media (max-width: 1180px) {
-  .site-bar,
   .hero-stage,
-  .skill-grid,
-  .resume-grid,
-  .more-grid,
   .flow-shell,
   .flow-preview,
-  .more-card,
-  .contact-grid {
+  .detail-grid {
     grid-template-columns: 1fr;
-  }
-
-  .site-bar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .hero-visual {
@@ -846,48 +670,43 @@ body::before {
     grid-column: span 6;
   }
 
-  .kind-tall,
-  .kind-small {
+  .kind-tall {
     grid-column: span 3;
   }
 }
 
 @media (max-width: 899px) {
-  .site-bar {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
     padding: 1.15rem 1.2rem 0;
   }
 
-  .site-bar-brand,
-  .site-bar-meta,
-  .site-nav a,
+  .topbar-brand,
+  .topbar-meta,
   .hero-kicker,
   .section-kicker,
   .bento-card span,
-  .hero-float-copy span,
+  .hero-side-copy span,
   .flow-item-label,
   .flow-item-meta,
   .flow-preview-label,
   .gallery-card figcaption,
-  .hero-meta span,
-  .skill-list span,
-  .contact-card span {
+  .hero-meta span {
     font-size: 0.65rem;
   }
 
   .hero-stage,
   .bento-section,
-  .skill-section,
   .flow-section,
-  .resume-shell,
-  .more-section,
-  .gallery-section,
-  .contact-section {
+  .detail-section,
+  .gallery-section {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
   }
 
   .hero-stage {
-    padding-top: 7rem;
+    padding-top: 6rem;
   }
 
   .hero-title {
@@ -917,16 +736,9 @@ body::before {
     border-radius: 1.8rem;
   }
 
-  .hero-float-inner {
+  .hero-side-media {
     height: 16rem;
     border-radius: 1.2rem;
-  }
-
-  .hero-footer {
-    padding-left: 1.2rem;
-    padding-right: 1.2rem;
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .bento-grid,
@@ -935,14 +747,13 @@ body::before {
   }
 
   .kind-wide,
-  .kind-tall,
-  .kind-small {
+  .kind-tall {
     grid-column: auto;
   }
 
   .flow-preview-media,
-  .gallery-visual,
-  .more-card-visual {
+  .detail-visual,
+  .gallery-visual {
     min-height: 20rem;
   }
 }

@@ -1,52 +1,38 @@
 import React, { useRef, useState } from "react";
 import PhotoCard from "./components/PhotoCard";
 import {
-  additionalProjects,
-  bentoCards,
-  contactLinks,
-  flowingProjects,
-  galleryCards,
+  detailPanels,
+  finalGallery,
   heroContent,
-  navigationLinks,
-  resumeSections,
-  siteMeta,
-  skillGroups,
+  introCards,
+  productFlow,
 } from "./content";
 import useLandingAnimations from "./hooks/useLandingAnimations";
 import usePointerGlow from "./hooks/usePointerGlow";
 
 export default function App() {
   const rootRef = useRef(null);
-  const [activeProjectId, setActiveProjectId] = useState(flowingProjects[0].id);
-  const activeProject =
-    flowingProjects.find((project) => project.id === activeProjectId) ?? flowingProjects[0];
+  const [activeFlowId, setActiveFlowId] = useState(productFlow[0].id);
+  const activeFlow =
+    productFlow.find((item) => item.id === activeFlowId) ?? productFlow[0];
 
   usePointerGlow(rootRef);
   useLandingAnimations(rootRef);
 
   return (
-    <main ref={rootRef} className="portfolio-site">
-      <header className="site-bar">
-        <div className="site-bar-brand">
+    <main ref={rootRef} className="cup-site">
+      <header className="topbar">
+        <div className="topbar-brand">
           <span className="brand-dot" />
-          <span>{siteMeta.name}</span>
+          <span>Meow Cup</span>
         </div>
-
-        <nav className="site-nav" aria-label="Primary">
-          {navigationLinks.map((link) => (
-            <a key={link.id} href={`#${link.id}`}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="site-bar-meta">
-          <span>{siteMeta.role}</span>
-          <span>{siteMeta.email}</span>
+        <div className="topbar-meta">
+          <span>Ceramic mug & saucer</span>
+          <span>Campaign website</span>
         </div>
       </header>
 
-      <section className="hero-shell" id="about">
+      <section className="hero-shell">
         <div className="hero-pin">
           <div className="hero-stage">
             <div className="hero-copy">
@@ -72,21 +58,21 @@ export default function App() {
               <div className="hero-visual-grid">
                 <PhotoCard
                   src={heroContent.mainImage}
-                  alt={siteMeta.name}
+                  alt="Floating ceramic cup"
                   className="hero-frame"
                   imageStyle={{ objectPosition: "50% 50%" }}
                   loading="eager"
                 />
 
-                <div className="hero-float-card">
+                <div className="hero-side-card">
                   <PhotoCard
                     src={heroContent.sideImage}
                     alt={heroContent.sideLabel}
-                    className="hero-float-inner"
+                    className="hero-side-media"
                     imageStyle={{ objectPosition: "50% 50%" }}
                     loading="eager"
                   />
-                  <div className="hero-float-copy">
+                  <div className="hero-side-copy">
                     <span>{heroContent.sideLabel}</span>
                     <strong>{heroContent.sideBody}</strong>
                   </div>
@@ -96,29 +82,21 @@ export default function App() {
           </div>
 
           <div className="hero-footer reveal-item">
-            <p>{siteMeta.tagline}</p>
-            <div className="hero-actions">
-              <a href={siteMeta.github} target="_blank" rel="noreferrer">
-                GitHub
-              </a>
-              <a href="/RESUME_FULLSTACK_AI_CN.md" target="_blank" rel="noreferrer">
-                Resume
-              </a>
-            </div>
+            <p>Premium framing for a softer daily object.</p>
           </div>
         </div>
       </section>
 
       <section className="bento-section">
         <div className="section-head reveal-item">
-          <p className="section-kicker">What I Do</p>
+          <p className="section-kicker">Product Story</p>
           <h2 className="section-title">
-            A profile built from product thinking, engineering execution, and AI-facing work.
+            The site should make the cup feel calm, tactile, and worth keeping.
           </h2>
         </div>
 
         <div className="bento-grid">
-          {bentoCards.map((card) => (
+          {introCards.map((card) => (
             <article key={card.id} className={`bento-card style-${card.style} reveal-item`}>
               <span>{card.eyebrow}</span>
               <h3>{card.title}</h3>
@@ -128,54 +106,32 @@ export default function App() {
         </div>
       </section>
 
-      <section className="skill-section">
+      <section className="flow-section">
         <div className="section-head reveal-item">
-          <p className="section-kicker">Toolkit</p>
+          <p className="section-kicker">View Sequence</p>
           <h2 className="section-title">
-            The stack is broad enough to ship systems, not just interfaces.
-          </h2>
-        </div>
-
-        <div className="skill-grid">
-          {skillGroups.map((group) => (
-            <article key={group.id} className="skill-card reveal-item">
-              <h3>{group.title}</h3>
-              <div className="skill-list">
-                {group.items.map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="flow-section" id="projects">
-        <div className="section-head reveal-item">
-          <p className="section-kicker">Portfolio Flow</p>
-          <h2 className="section-title">
-            Hover through the work instead of scanning a static project list.
+            Move through the product one angle at a time instead of dumping every image at once.
           </h2>
         </div>
 
         <div className="flow-shell reveal-item">
           <div className="flow-menu">
-            {flowingProjects.map((project) => {
-              const isActive = project.id === activeProjectId;
+            {productFlow.map((item) => {
+              const isActive = item.id === activeFlowId;
               return (
                 <button
-                  key={project.id}
+                  key={item.id}
                   type="button"
                   className={`flow-item ${isActive ? "is-active" : ""}`}
-                  onMouseEnter={() => setActiveProjectId(project.id)}
-                  onFocus={() => setActiveProjectId(project.id)}
+                  onMouseEnter={() => setActiveFlowId(item.id)}
+                  onFocus={() => setActiveFlowId(item.id)}
                 >
-                  <span className="flow-item-label">{project.label}</span>
+                  <span className="flow-item-label">{item.label}</span>
                   <span className="flow-item-title-wrap">
-                    <span className="flow-item-title">{project.title}</span>
-                    <span className="flow-item-title flow-item-title-ghost">{project.title}</span>
+                    <span className="flow-item-title">{item.title}</span>
+                    <span className="flow-item-title flow-item-title-ghost">{item.title}</span>
                   </span>
-                  <span className="flow-item-meta">{project.meta}</span>
+                  <span className="flow-item-meta">{item.meta}</span>
                 </button>
               );
             })}
@@ -183,113 +139,61 @@ export default function App() {
 
           <div className="flow-preview">
             <PhotoCard
-              src={activeProject.image}
-              alt={activeProject.title}
+              src={activeFlow.image}
+              alt={activeFlow.title}
               className="flow-preview-media"
-              imageStyle={{ objectPosition: activeProject.position }}
+              imageStyle={{ objectPosition: activeFlow.position }}
             />
             <div className="flow-preview-copy">
-              <span className="flow-preview-label">{activeProject.label}</span>
-              <p>{activeProject.meta}</p>
-              <h3>{activeProject.title}</h3>
-              <p>{activeProject.description}</p>
-              <a href={activeProject.repo} target="_blank" rel="noreferrer">
-                View Repository
-              </a>
+              <span className="flow-preview-label">{activeFlow.label}</span>
+              <p>{activeFlow.meta}</p>
+              <h3>{activeFlow.title}</h3>
+              <p>{activeFlow.description}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="resume-section" id="resume">
-        <div className="resume-shell">
-          <div className="resume-copy reveal-item">
-            <p className="section-kicker">Resume Snapshot</p>
-            <h2 className="section-title">
-              A full-stack profile with stronger AI application positioning.
-            </h2>
-            <p className="resume-intro">{siteMeta.intro}</p>
-          </div>
-
-          <div className="resume-grid">
-            {resumeSections.map((section) => (
-              <article key={section.id} className="resume-card reveal-item">
-                <h3>{section.title}</h3>
-                {section.lines.map((line) => (
-                  <p key={line}>{line}</p>
-                ))}
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="more-section">
-        <div className="section-head reveal-item">
-          <p className="section-kicker">More Repositories</p>
-          <h2 className="section-title">
-            Supporting projects that strengthen the overall body of work.
-          </h2>
-        </div>
-
-        <div className="more-grid">
-          {additionalProjects.map((project) => (
-            <article key={project.id} className="more-card reveal-item">
-              <div className="more-card-media">
-                <PhotoCard
-                  src={project.image}
-                  alt={project.title}
-                  className="more-card-visual"
-                  imageStyle={{ objectPosition: "50% 50%" }}
-                />
+      <section className="detail-section">
+        <div className="detail-grid">
+          {detailPanels.map((panel) => (
+            <article key={panel.id} className="detail-card reveal-item">
+              <div className="detail-copy">
+                <p className="section-kicker">Detail Focus</p>
+                <h3>{panel.title}</h3>
+                <p>{panel.body}</p>
               </div>
-              <div className="more-card-copy">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <a href={project.repo} target="_blank" rel="noreferrer">
-                  Open Repo
-                </a>
-              </div>
+              <PhotoCard
+                src={panel.image}
+                alt={panel.title}
+                className="detail-visual"
+                contain={panel.contain}
+                imageStyle={{ objectPosition: panel.position }}
+              />
             </article>
           ))}
         </div>
       </section>
 
       <section className="gallery-section">
+        <div className="section-head reveal-item">
+          <p className="section-kicker">Final Gallery</p>
+          <h2 className="section-title">
+            Every supplied image remains visible, but the layout stays intentional.
+          </h2>
+        </div>
+
         <div className="gallery-grid">
-          {galleryCards.map((card) => (
+          {finalGallery.map((card) => (
             <figure key={card.id} className={`gallery-card kind-${card.kind} reveal-item`}>
               <PhotoCard
                 src={card.image}
                 alt={card.title}
                 className="gallery-visual"
-                contain={card.contain}
                 imageStyle={{ objectPosition: card.position }}
               />
               <figcaption>{card.title}</figcaption>
             </figure>
-          ))}
-        </div>
-      </section>
-
-      <section className="contact-section" id="contact">
-        <div className="section-head reveal-item">
-          <p className="section-kicker">Contact</p>
-          <h2 className="section-title">Open to full-stack, frontend, and AI application roles.</h2>
-        </div>
-
-        <div className="contact-grid">
-          {contactLinks.map((link) => (
-            <a
-              key={link.id}
-              className="contact-card reveal-item"
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-            >
-              <span>{link.label}</span>
-              <strong>{link.value}</strong>
-            </a>
           ))}
         </div>
       </section>

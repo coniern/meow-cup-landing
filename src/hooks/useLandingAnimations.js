@@ -17,8 +17,8 @@ export default function useLandingAnimations(rootRef) {
       const flowItems = gsap.utils.toArray(".flow-item");
 
       gsap.set(".hero-copy", { autoAlpha: 0, y: 36 });
-      gsap.set(".hero-frame", { autoAlpha: 0, y: 44, scale: 0.97 });
-      gsap.set(".hero-float-card", { autoAlpha: 0, y: 28, rotate: 2 });
+      gsap.set(".hero-frame", { autoAlpha: 0, y: 42, scale: 0.97 });
+      gsap.set(".hero-side-card", { autoAlpha: 0, y: 28 });
       gsap.set(".flow-preview", { autoAlpha: 0, y: 24, scale: 0.98 });
 
       gsap
@@ -27,7 +27,7 @@ export default function useLandingAnimations(rootRef) {
           autoAlpha: 1,
           y: 0,
           scale: 1,
-          duration: 1.08,
+          duration: 1.06,
           ease: "power3.out",
         })
         .to(
@@ -35,18 +35,17 @@ export default function useLandingAnimations(rootRef) {
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.86,
+            duration: 0.84,
             ease: "power2.out",
           },
           0.16
         )
         .to(
-          ".hero-float-card",
+          ".hero-side-card",
           {
             autoAlpha: 1,
             y: 0,
-            rotate: 0,
-            duration: 0.92,
+            duration: 0.9,
             ease: "power3.out",
           },
           0.26
@@ -57,7 +56,7 @@ export default function useLandingAnimations(rootRef) {
             autoAlpha: 1,
             y: 0,
             scale: 1,
-            duration: 0.88,
+            duration: 0.82,
             ease: "power2.out",
           },
           0.34
@@ -66,11 +65,11 @@ export default function useLandingAnimations(rootRef) {
       revealItems.forEach((item) => {
         gsap.fromTo(
           item,
-          { autoAlpha: 0, y: 32 },
+          { autoAlpha: 0, y: 30 },
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.9,
+            duration: 0.86,
             ease: "power2.out",
             scrollTrigger: {
               trigger: item,
@@ -83,12 +82,12 @@ export default function useLandingAnimations(rootRef) {
       bentoCards.forEach((card, index) => {
         gsap.fromTo(
           card,
-          { autoAlpha: 0, y: 50, rotateX: 8 },
+          { autoAlpha: 0, y: 42, rotateX: 8 },
           {
             autoAlpha: 1,
             y: 0,
             rotateX: 0,
-            duration: 0.95,
+            duration: 0.9,
             ease: "power3.out",
             delay: index * 0.04,
             scrollTrigger: {
@@ -102,12 +101,12 @@ export default function useLandingAnimations(rootRef) {
       flowItems.forEach((item, index) => {
         gsap.fromTo(
           item,
-          { autoAlpha: 0, y: 34, x: index % 2 === 0 ? -18 : 18 },
+          { autoAlpha: 0, y: 32, x: index % 2 === 0 ? -16 : 16 },
           {
             autoAlpha: 1,
             y: 0,
             x: 0,
-            duration: 0.82,
+            duration: 0.78,
             ease: "power3.out",
             scrollTrigger: {
               trigger: item,
@@ -132,7 +131,7 @@ export default function useLandingAnimations(rootRef) {
         .to(
           ".hero-stage",
           {
-            scale: 0.968,
+            scale: 0.97,
             yPercent: -2,
             ease: "none",
           },
@@ -141,16 +140,16 @@ export default function useLandingAnimations(rootRef) {
         .to(
           ".hero-copy",
           {
-            yPercent: -12,
+            yPercent: -10,
             ease: "none",
           },
           0
         )
         .to(
-          ".hero-float-card",
+          ".hero-side-card",
           {
             yPercent: 10,
-            autoAlpha: 0.65,
+            autoAlpha: 0.66,
             ease: "none",
           },
           0
