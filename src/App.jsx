@@ -1,25 +1,37 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import PhotoCard from "./components/PhotoCard";
-import { closingGallery, heroContent, materialCards, storyFrames } from "./content";
+import {
+  additionalProjects,
+  bentoCards,
+  flowingProjects,
+  galleryCards,
+  heroContent,
+  resumeSections,
+  siteMeta,
+  skillGroups,
+} from "./content";
 import useLandingAnimations from "./hooks/useLandingAnimations";
 import usePointerGlow from "./hooks/usePointerGlow";
 
 export default function App() {
-  const rootRef = useRef(null);
+  const rootRef = React.useRef(null);
+  const [activeProjectId, setActiveProjectId] = useState(flowingProjects[0].id);
+  const activeProject =
+    flowingProjects.find((project) => project.id === activeProjectId) ?? flowingProjects[0];
 
   usePointerGlow(rootRef);
   useLandingAnimations(rootRef);
 
   return (
-    <main ref={rootRef} className="experience">
-      <header className="topbar">
-        <div className="topbar-brand">
+    <main ref={rootRef} className="portfolio-site">
+      <header className="site-bar">
+        <div className="site-bar-brand">
           <span className="brand-dot" />
-          <span>Meow Cup</span>
+          <span>{siteMeta.name}</span>
         </div>
-        <div className="topbar-meta">
-          <span>Campaign layout</span>
-          <span>Edition 06</span>
+        <div className="site-bar-meta">
+          <span>{siteMeta.role}</span>
+          <span>{siteMeta.email}</span>
         </div>
       </header>
 
@@ -49,7 +61,7 @@ export default function App() {
               <div className="hero-visual-grid">
                 <PhotoCard
                   src={heroContent.mainImage}
-                  alt="Floating ceramic cup"
+                  alt={siteMeta.name}
                   className="hero-frame"
                   imageStyle={{ objectPosition: "50% 50%" }}
                   loading="eager"
@@ -58,7 +70,7 @@ export default function App() {
                 <div className="hero-float-card">
                   <PhotoCard
                     src={heroContent.sideImage}
-                    alt="Front view"
+                    alt={heroContent.sideLabel}
                     className="hero-float-inner"
                     imageStyle={{ objectPosition: "50% 50%" }}
                     loading="eager"
@@ -71,102 +83,171 @@ export default function App() {
               </div>
             </div>
           </div>
+
+          <div className="hero-footer reveal-item">
+            <p>{siteMeta.tagline}</p>
+            <a href={siteMeta.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className="material-section">
+      <section className="bento-section">
         <div className="section-head reveal-item">
-          <p className="section-kicker">01 / Material & Mark</p>
+          <p className="section-kicker">What I Do</p>
           <h2 className="section-title">
-            Two supporting panels are enough when each one proves a different kind of value.
+            A profile built from product thinking, engineering execution, and AI-facing work.
           </h2>
         </div>
 
-        <div className="material-grid">
-          {materialCards.map((card) => (
-            <article key={card.id} className="material-card reveal-item">
-              <div className="material-copy">
-                <p>{card.kicker}</p>
-                <h3>{card.title}</h3>
-                <p>{card.body}</p>
-              </div>
-              <PhotoCard
-                src={card.image}
-                alt={card.title}
-                className="material-visual"
-                contain={card.contain}
-                imageStyle={{ objectPosition: card.position }}
-              />
+        <div className="bento-grid">
+          {bentoCards.map((card) => (
+            <article key={card.id} className={`bento-card style-${card.style} reveal-item`}>
+              <span>{card.eyebrow}</span>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="story-lock">
-        <div className="story-stick">
-          <div className="story-grid">
-            <div className="story-copy">
-              <p className="section-kicker">02 / Scroll Story</p>
-              <h2 className="section-title">The page now changes one frame at a time.</h2>
-              <div className="story-steps">
-                {storyFrames.map((frame) => (
-                  <article key={frame.id} className="story-step">
-                    <span>{frame.label}</span>
-                    <h3>{frame.title}</h3>
-                    <p>{frame.text}</p>
-                  </article>
+      <section className="skill-section">
+        <div className="section-head reveal-item">
+          <p className="section-kicker">Toolkit</p>
+          <h2 className="section-title">
+            The stack is broad enough to ship systems, not just interfaces.
+          </h2>
+        </div>
+
+        <div className="skill-grid">
+          {skillGroups.map((group) => (
+            <article key={group.id} className="skill-card reveal-item">
+              <h3>{group.title}</h3>
+              <div className="skill-list">
+                {group.items.map((item) => (
+                  <span key={item}>{item}</span>
                 ))}
               </div>
-            </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-            <div className="story-visual">
-              {storyFrames.map((frame) => (
-                <PhotoCard
-                  key={frame.id}
-                  src={frame.image}
-                  alt={frame.title}
-                  className="story-image"
-                  imageStyle={{ objectPosition: frame.position }}
-                />
-              ))}
-            </div>
+      <section className="flow-section">
+        <div className="section-head reveal-item">
+          <p className="section-kicker">Portfolio Flow</p>
+          <h2 className="section-title">
+            Hover through the work instead of scanning a static project list.
+          </h2>
+        </div>
+
+        <div className="flow-shell reveal-item">
+          <div className="flow-menu">
+            {flowingProjects.map((project) => {
+              const isActive = project.id === activeProjectId;
+              return (
+                <button
+                  key={project.id}
+                  type="button"
+                  className={`flow-item ${isActive ? "is-active" : ""}`}
+                  onMouseEnter={() => setActiveProjectId(project.id)}
+                  onFocus={() => setActiveProjectId(project.id)}
+                >
+                  <span className="flow-item-label">{project.label}</span>
+                  <span className="flow-item-title-wrap">
+                    <span className="flow-item-title">{project.title}</span>
+                    <span className="flow-item-title flow-item-title-ghost">{project.title}</span>
+                  </span>
+                  <span className="flow-item-meta">{project.meta}</span>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="story-mobile-list">
-            {storyFrames.map((frame) => (
-              <article key={`${frame.id}-mobile`} className="story-mobile-card reveal-item">
-                <div className="story-mobile-copy">
-                  <span>{frame.label}</span>
-                  <h3>{frame.title}</h3>
-                  <p>{frame.text}</p>
-                </div>
-                <PhotoCard
-                  src={frame.image}
-                  alt={frame.title}
-                  className="story-mobile-visual"
-                  imageStyle={{ objectPosition: frame.position }}
-                />
+          <div className="flow-preview">
+            <PhotoCard
+              src={activeProject.image}
+              alt={activeProject.title}
+              className="flow-preview-media"
+              imageStyle={{ objectPosition: activeProject.position }}
+            />
+            <div className="flow-preview-copy">
+              <span className="flow-preview-label">{activeProject.label}</span>
+              <p>{activeProject.meta}</p>
+              <h3>{activeProject.title}</h3>
+              <p>{activeProject.description}</p>
+              <a href={activeProject.repo} target="_blank" rel="noreferrer">
+                View Repository
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="resume-section">
+        <div className="resume-shell">
+          <div className="resume-copy reveal-item">
+            <p className="section-kicker">Resume Snapshot</p>
+            <h2 className="section-title">
+              A full-stack profile with stronger AI application positioning.
+            </h2>
+            <p className="resume-intro">{siteMeta.intro}</p>
+          </div>
+
+          <div className="resume-grid">
+            {resumeSections.map((section) => (
+              <article key={section.id} className="resume-card reveal-item">
+                <h3>{section.title}</h3>
+                {section.lines.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="closing-section">
+      <section className="more-section">
         <div className="section-head reveal-item">
-          <p className="section-kicker">03 / Final Proof</p>
+          <p className="section-kicker">More Repositories</p>
           <h2 className="section-title">
-            End with the full image set, but present it like a finished editorial spread.
+            Supporting projects that strengthen the overall body of work.
           </h2>
         </div>
 
-        <div className="closing-grid">
-          {closingGallery.map((card) => (
-            <figure key={card.id} className={`closing-card kind-${card.kind} reveal-item`}>
+        <div className="more-grid">
+          {additionalProjects.map((project) => (
+            <article key={project.id} className="more-card reveal-item">
+              <div className="more-card-media">
+                <PhotoCard
+                  src={project.image}
+                  alt={project.title}
+                  className="more-card-visual"
+                  imageStyle={{ objectPosition: "50% 50%" }}
+                />
+              </div>
+              <div className="more-card-copy">
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <a href={project.repo} target="_blank" rel="noreferrer">
+                  Open Repo
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="gallery-section">
+        <div className="gallery-grid">
+          {galleryCards.map((card) => (
+            <figure key={card.id} className={`gallery-card kind-${card.kind} reveal-item`}>
               <PhotoCard
                 src={card.image}
                 alt={card.title}
-                className="closing-visual"
+                className="gallery-visual"
+                contain={card.contain}
                 imageStyle={{ objectPosition: card.position }}
               />
               <figcaption>{card.title}</figcaption>
