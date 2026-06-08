@@ -1,13 +1,40 @@
 # Meow Cup Landing
 
-A Vite + React editorial product page for a ceramic cat cup.
+An editorial product landing page for a ceramic cat cup, built with Vite, React, and GSAP.
 
-## Features
+## Overview
 
-- Luxury campaign style layout
-- Multi-angle image storytelling
-- GSAP-powered reveal and scroll transitions
-- Responsive desktop and mobile compositions
+This project turns a small image set into a luxury campaign-style landing page with:
+
+- a dominant hero composition
+- controlled reveal animations
+- desktop sticky storytelling
+- mobile-friendly sequential layouts
+- a cleaner repository structure for presentation and maintenance
+
+## Tech Stack
+
+- React 18
+- Vite 5
+- GSAP + ScrollTrigger
+- Plain CSS
+
+## Project Structure
+
+```text
+src/
+  App.jsx
+  content.js
+  main.jsx
+  styles.css
+  components/
+    PhotoCard.jsx
+  hooks/
+    useLandingAnimations.js
+    usePointerGlow.js
+images/
+  *.png
+```
 
 ## Commands
 
@@ -19,6 +46,6 @@ npm run build
 
 ## Notes
 
-- Source images live in `images/`
-- The current page is 2D only; all previous 3D code has been removed
-- Large PNG assets are still present and can be optimized later with WebP/AVIF conversion
+- Image assets currently remain as original PNG files.
+- A future optimization pass should convert images to WebP/AVIF and generate responsive sizes.
+- The repository was simplified from an earlier 3D prototype into a focused 2D editorial product page.
