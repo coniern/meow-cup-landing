@@ -1,16 +1,27 @@
-# Meow Cup Landing
+# Personal Portfolio Website
 
-An editorial product landing page for a ceramic cat cup, built with Vite, React, and GSAP.
+A personal portfolio website for `coniern`, built with Vite, React, and GSAP.
 
 ## Overview
 
-This project turns a small image set into a luxury campaign-style landing page with:
+This project is no longer a single product landing page. It has been upgraded into a personal website that combines:
 
-- a dominant hero composition
-- controlled reveal animations
-- desktop sticky storytelling
-- mobile-friendly sequential layouts
-- a cleaner repository structure for presentation and maintenance
+- personal brand positioning
+- portfolio project highlights
+- resume-style profile sections
+- interactive project navigation
+- richer hover, pointer, and spotlight effects
+
+The visual direction references stronger editorial and interactive portfolio websites rather than a standard resume page.
+
+## Features
+
+- large-format editorial hero layout
+- bento-style capability cards
+- flowing project navigation inspired by menu motion patterns
+- hover-driven card feedback and pointer spotlight effects
+- selected repositories integrated into a single portfolio narrative
+- local MCP setup for `shadcn` + `@react-bits` registry usage
 
 ## Tech Stack
 
@@ -32,6 +43,9 @@ src/
   hooks/
     useLandingAnimations.js
     usePointerGlow.js
+.vscode/
+  mcp.json
+components.json
 images/
   *.png
 ```
@@ -44,8 +58,16 @@ npm run dev
 npm run build
 ```
 
+## MCP Setup
+
+This repository includes:
+
+- `components.json` with the `@react-bits` registry
+- `.vscode/mcp.json` with the `shadcn` MCP server entry
+
+If you use Cursor or Claude Code instead of VS Code, equivalent MCP config files can be added separately.
+
 ## Notes
 
-- Image assets currently remain as original PNG files.
-- A future optimization pass should convert images to WebP/AVIF and generate responsive sizes.
-- The repository was simplified from an earlier 3D prototype into a focused 2D editorial product page.
+- Image assets are still original PNG files and should later be converted to WebP/AVIF.
+- The current site is intended to evolve into a stronger personal showcase for full-stack + AI job applications.
