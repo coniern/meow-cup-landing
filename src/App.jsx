@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import PhotoCard from "./components/PhotoCard";
 import {
   additionalProjects,
   bentoCards,
+  contactLinks,
   flowingProjects,
   galleryCards,
   heroContent,
+  navigationLinks,
   resumeSections,
   siteMeta,
   skillGroups,
@@ -14,7 +16,7 @@ import useLandingAnimations from "./hooks/useLandingAnimations";
 import usePointerGlow from "./hooks/usePointerGlow";
 
 export default function App() {
-  const rootRef = React.useRef(null);
+  const rootRef = useRef(null);
   const [activeProjectId, setActiveProjectId] = useState(flowingProjects[0].id);
   const activeProject =
     flowingProjects.find((project) => project.id === activeProjectId) ?? flowingProjects[0];
@@ -29,13 +31,22 @@ export default function App() {
           <span className="brand-dot" />
           <span>{siteMeta.name}</span>
         </div>
+
+        <nav className="site-nav" aria-label="Primary">
+          {navigationLinks.map((link) => (
+            <a key={link.id} href={`#${link.id}`}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
         <div className="site-bar-meta">
           <span>{siteMeta.role}</span>
           <span>{siteMeta.email}</span>
         </div>
       </header>
 
-      <section className="hero-shell">
+      <section className="hero-shell" id="about">
         <div className="hero-pin">
           <div className="hero-stage">
             <div className="hero-copy">
@@ -86,9 +97,14 @@ export default function App() {
 
           <div className="hero-footer reveal-item">
             <p>{siteMeta.tagline}</p>
-            <a href={siteMeta.github} target="_blank" rel="noreferrer">
-              GitHub
-            </a>
+            <div className="hero-actions">
+              <a href={siteMeta.github} target="_blank" rel="noreferrer">
+                GitHub
+              </a>
+              <a href="/RESUME_FULLSTACK_AI_CN.md" target="_blank" rel="noreferrer">
+                Resume
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -134,7 +150,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="flow-section">
+      <section className="flow-section" id="projects">
         <div className="section-head reveal-item">
           <p className="section-kicker">Portfolio Flow</p>
           <h2 className="section-title">
@@ -185,7 +201,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="resume-section">
+      <section className="resume-section" id="resume">
         <div className="resume-shell">
           <div className="resume-copy reveal-item">
             <p className="section-kicker">Resume Snapshot</p>
@@ -252,6 +268,28 @@ export default function App() {
               />
               <figcaption>{card.title}</figcaption>
             </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="contact-section" id="contact">
+        <div className="section-head reveal-item">
+          <p className="section-kicker">Contact</p>
+          <h2 className="section-title">Open to full-stack, frontend, and AI application roles.</h2>
+        </div>
+
+        <div className="contact-grid">
+          {contactLinks.map((link) => (
+            <a
+              key={link.id}
+              className="contact-card reveal-item"
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+            >
+              <span>{link.label}</span>
+              <strong>{link.value}</strong>
+            </a>
           ))}
         </div>
       </section>
