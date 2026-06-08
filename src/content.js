@@ -1,95 +1,289 @@
-import contactSheetImage from "../images/ChatGPT Image 2026年6月8日 12_17_03.png";
+import projectGridImage from "../images/ChatGPT Image 2026年6月8日 12_17_03.png";
 import heroImage from "../images/ChatGPT Image 2026年6月8日 12_18_43.png";
-import highAngleImage from "../images/ChatGPT Image 2026年6月8日 12_25_13.png";
+import detailImage from "../images/ChatGPT Image 2026年6月8日 12_25_13.png";
 import frontImage from "../images/ChatGPT Image 2026年6月7日 16_20_57.png";
 import glazeImage from "../images/ChatGPT Image 2026年6月7日 16_22_20.png";
 import markImage from "../images/ChatGPT Image 2026年6月7日 16_27_49.png";
 
-export const heroContent = {
-  stamp: "Object Story / 2026",
-  kicker: "Ceramic Object / Campaign Cut",
-  title: ["Quiet form.", "Expensive framing."],
-  subtitle:
-    "A softer product page built like a luxury campaign: one dominant image, disciplined typography, slower reveals, and enough whitespace for the object to feel considered.",
-  tags: ["Quiet luxury", "Editorial framing", "Slow motion system"],
-  mainImage: heroImage,
-  sideImage: frontImage,
-  sideLabel: "Front Study",
-  sideBody: "The icon should read in a single glance.",
+export const siteMeta = {
+  name: "肖童学",
+  role: "Full-Stack Developer / AI Application Engineer",
+  email: "2325826552@qq.com",
+  github: "https://github.com/coniern",
+  tagline: "Full-stack systems, AI-facing products, and portfolio-grade execution.",
+  intro:
+    "I build software from interface to backend, then keep going until the repository, documentation, and product presentation are strong enough to stand on their own.",
 };
 
-export const materialCards = [
+export const heroContent = {
+  stamp: "Portfolio / 2026",
+  kicker: "Full-Stack + AI",
+  title: ["Build the product.", "Shape the system.", "Package the work."],
+  subtitle:
+    "My work sits between engineering delivery, interaction design, repository cleanup, and AI application framing. I care about what ships, how it feels, and how clearly it can be understood.",
+  tags: [
+    "React / Vue",
+    "Java / Spring Boot",
+    "AI workflow integration",
+    "Repository cleanup",
+  ],
+  mainImage: heroImage,
+  sideImage: detailImage,
+  sideLabel: "Current Direction",
+  sideBody:
+    "Personal portfolio systems, management platforms, frontend interaction work, and AI-oriented product positioning.",
+};
+
+export const bentoCards = [
   {
-    id: "material-glaze",
-    kicker: "Glaze Study",
-    title: "Soft gloss. Slow highlight. A quieter kind of luxury.",
+    id: "bento-stack",
+    eyebrow: "Stack",
+    title: "Frontend, backend, and delivery all in one profile.",
     body:
-      "The ceramic finish is the luxury cue. It needs room, a larger crop, and a slower rhythm instead of being hidden inside a crowded product stack.",
-    image: glazeImage,
-    position: "54% 52%",
+      "I move between interface structure, API design, business workflows, and final repository polish without treating them like separate jobs.",
+    style: "large",
   },
   {
-    id: "material-mark",
-    kicker: "Signature Mark",
-    title: "The cat mark works best when everything around it stays composed.",
+    id: "bento-ai",
+    eyebrow: "AI",
+    title: "AI is handled as product capability, not decoration.",
     body:
-      "One playful move is enough. The rest of the page stays restrained so the identity reads as deliberate, not decorative.",
-    image: markImage,
-    position: "50% 50%",
-    contain: true,
+      "I focus on how LLM features fit into real user flows: prompt framing, workflow logic, interface placement, and implementation pragmatics.",
+    style: "medium",
+  },
+  {
+    id: "bento-craft",
+    eyebrow: "Craft",
+    title: "Projects should read well before anyone runs them.",
+    body:
+      "README quality, structure clarity, and code presentation matter. I spend time turning rough repositories into understandable work.",
+    style: "medium",
+  },
+  {
+    id: "bento-product",
+    eyebrow: "Product",
+    title: "I think in user-facing systems, not isolated tasks.",
+    body:
+      "That means considering hierarchy, interaction rhythm, business flow, and how the whole experience holds together.",
+    style: "wide",
   },
 ];
 
-export const storyFrames = [
+export const skillGroups = [
   {
-    id: "story-front",
-    label: "01",
-    title: "Open with recognition.",
-    text:
-      "A direct front view gives the illustration its cleanest first read. The page starts with recognition before it asks for attention.",
+    id: "frontend",
+    title: "Frontend",
+    items: [
+      "React",
+      "Vue 3",
+      "Vite",
+      "JavaScript",
+      "TypeScript",
+      "GSAP",
+      "Responsive layout",
+      "Element Plus",
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend",
+    items: [
+      "Java",
+      "Spring Boot",
+      "Node.js",
+      "REST APIs",
+      "JWT",
+      "MyBatis Plus",
+      "MySQL",
+      "Service structure",
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI / Workflow",
+    items: [
+      "Prompt design",
+      "LLM integration",
+      "Workflow automation",
+      "Prototype acceleration",
+      "AI content systems",
+      "Product framing",
+    ],
+  },
+];
+
+export const featuredProjects = [
+  {
+    id: "meow-cup",
+    title: "Meow Cup Portfolio Landing",
+    type: "React / GSAP / Vite",
+    summary:
+      "A visual product page rebuilt into a portfolio-ready campaign-style website with stronger hierarchy, responsive structure, and reusable code organization.",
+    highlights: [
+      "Restructured the page into cleaner narrative sections",
+      "Improved image composition, interaction rhythm, and mobile behavior",
+      "Split logic into reusable content, hooks, and components",
+    ],
+    image: heroImage,
+    position: "50% 50%",
+    repo: "https://github.com/coniern/meow-cup-landing",
+  },
+  {
+    id: "thesis-system",
+    title: "Thesis Management System",
+    type: "Vue 3 / Spring Boot / MySQL",
+    summary:
+      "A full-stack graduation thesis workflow platform with role-based interfaces for administrators, teachers, and students.",
+    highlights: [
+      "Covers topic selection, process tracking, file workflows, and system settings",
+      "Strong enough to represent real business-oriented full-stack work",
+      "Repository documentation and presentation were upgraded for portfolio use",
+    ],
+    image: projectGridImage,
+    position: "50% 50%",
+    repo: "https://github.com/coniern/Thesis-management-system",
+  },
+  {
+    id: "javaweb-platform",
+    title: "Project Management Platform",
+    type: "Java / Spring Boot / JSP",
+    summary:
+      "A Java-based management platform prototype showing backend controller organization, platform modules, and technical-debt cleanup awareness.",
+    highlights: [
+      "Combines backend endpoints with authentication and project flow pages",
+      "Shows understanding of older and transitional Java web project structures",
+      "Repository hygiene and README quality were improved significantly",
+    ],
     image: frontImage,
     position: "50% 50%",
-  },
-  {
-    id: "story-angle",
-    label: "02",
-    title: "Turn into presence.",
-    text:
-      "A diagonal floating view changes the mood immediately. The cup stops feeling catalogued and starts feeling staged.",
-    image: highAngleImage,
-    position: "50% 50%",
-  },
-  {
-    id: "story-surface",
-    label: "03",
-    title: "Then slow down at the surface.",
-    text:
-      "The macro crop slows the page down and gives the glaze enough authority to hold an entire section on its own.",
-    image: glazeImage,
-    position: "54% 52%",
+    repo: "https://github.com/coniern/project-JavaWeb-system",
   },
 ];
 
-export const closingGallery = [
+export const additionalProjects = [
   {
-    id: "closing-sheet",
-    title: "Complete contact sheet",
-    image: contactSheetImage,
-    position: "50% 50%",
-    kind: "wide",
+    id: "graduation-modular",
+    title: "Graduation Thesis Management System",
+    description:
+      "A larger modular thesis platform with separated system, notification, document, gateway, and thesis-related modules.",
+    repo: "https://github.com/coniern/Graduation-Thesis-Management-System",
+    image: projectGridImage,
   },
   {
-    id: "closing-hero",
-    title: "Hero float",
+    id: "ml-practice",
+    title: "Linear / Logistic Regression Practice",
+    description:
+      "NumPy-based machine learning exercises rewritten into clearer and more presentable learning projects.",
+    repo: "https://github.com/coniern/linear-regression-practice",
+    image: glazeImage,
+  },
+];
+
+export const flowingProjects = [
+  {
+    id: "flow-meow-cup",
+    label: "01",
+    title: "Meow Cup Landing",
+    meta: "React / GSAP / Campaign Page",
+    description:
+      "A visual product site reshaped into a portfolio-grade interactive landing page with stronger hierarchy and cleaner code structure.",
+    image: heroImage,
+    position: "50% 50%",
+    repo: "https://github.com/coniern/meow-cup-landing",
+  },
+  {
+    id: "flow-thesis",
+    label: "02",
+    title: "Thesis Management System",
+    meta: "Vue 3 / Spring Boot / Full Stack",
+    description:
+      "A real workflow-oriented graduation thesis platform spanning admin, teacher, and student roles.",
+    image: projectGridImage,
+    position: "50% 50%",
+    repo: "https://github.com/coniern/Thesis-management-system",
+  },
+  {
+    id: "flow-javaweb",
+    label: "03",
+    title: "Project Management Platform",
+    meta: "Java / Spring Boot / JSP",
+    description:
+      "A Java project platform prototype used to show controller structure, module grouping, and repository cleanup work.",
+    image: frontImage,
+    position: "50% 50%",
+    repo: "https://github.com/coniern/project-JavaWeb-system",
+  },
+  {
+    id: "flow-ml",
+    label: "04",
+    title: "Regression Practice",
+    meta: "Python / NumPy / ML Basics",
+    description:
+      "A machine learning fundamentals project rebuilt into a cleaner and more presentable learning repository.",
+    image: glazeImage,
+    position: "54% 52%",
+    repo: "https://github.com/coniern/linear-regression-practice",
+  },
+];
+
+export const resumeSections = [
+  {
+    id: "profile",
+    title: "Profile",
+    lines: [
+      "Full-stack developer with AI application interests and strong repository-level engineering discipline.",
+      "Comfortable moving across interface work, backend systems, project cleanup, and portfolio presentation.",
+    ],
+  },
+  {
+    id: "roles",
+    title: "Target Roles",
+    lines: [
+      "Full-Stack Developer",
+      "AI Application Engineer",
+      "Frontend Engineer with product focus",
+      "Generalist engineer in startup teams",
+    ],
+  },
+  {
+    id: "value",
+    title: "What I Bring",
+    lines: [
+      "Cleaner execution than raw prototypes",
+      "Better project presentation than typical school repositories",
+      "A useful mix of engineering, interface sense, and AI-facing curiosity",
+    ],
+  },
+];
+
+export const galleryCards = [
+  {
+    id: "gallery-hero",
+    title: "Interface craft",
     image: heroImage,
     position: "50% 50%",
     kind: "tall",
   },
   {
-    id: "closing-front",
-    title: "Front view",
-    image: frontImage,
+    id: "gallery-grid",
+    title: "System thinking",
+    image: projectGridImage,
     position: "50% 50%",
+    kind: "wide",
+  },
+  {
+    id: "gallery-detail",
+    title: "Attention to detail",
+    image: glazeImage,
+    position: "54% 52%",
     kind: "tall",
+  },
+  {
+    id: "gallery-mark",
+    title: "Identity sense",
+    image: markImage,
+    position: "50% 50%",
+    kind: "small",
+    contain: true,
   },
 ];
